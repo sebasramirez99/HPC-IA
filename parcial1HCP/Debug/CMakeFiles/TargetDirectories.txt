@@ -1,0 +1,3 @@
+/home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/Debug/CMakeFiles/rebuild_cache.dir
+/home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/Debug/CMakeFiles/edit_cache.dir
+/home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/Debug/CMakeFiles/parcial1HCP.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/parcial1HCP.dir/main.cpp.o CMakeFiles/parcial1HCP.dir/FUNCIONES/fm.cpp.o  -o parcial1HCP 
