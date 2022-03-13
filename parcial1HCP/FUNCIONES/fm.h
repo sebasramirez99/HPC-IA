@@ -21,6 +21,14 @@ public:
     Eigen::Matrix3d initMatrixAI();
     Eigen::MatrixXd initMatrixAE();
     Eigen::MatrixXd initMatrixBE();
+    Eigen::MatrixXd initMatrixP();
+    Eigen::MatrixXd initMatrixC();
+    Eigen::MatrixXd initMatrixF1();
+    Eigen::Matrix2d initMatrixAEI();
+    Eigen::Matrix2d initMatrixBEI();
+    Eigen::Matrix2d initMatrixCEI();
+    Eigen::Matrix2d initMatrixIEI();
+
 
 };
 

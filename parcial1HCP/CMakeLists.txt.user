@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2022-03-10T14:52:41. -->
+<!-- Written by QtCreator 4.13.1, 2022-03-12T23:38:34. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -216,7 +216,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">parcial1HCP</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.parcial1HCP</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">parcial1HCP</value>
-    <value type="QString" key="RunConfiguration.Arguments">5</value>
+    <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>

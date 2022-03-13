@@ -16,16 +16,12 @@
 
 
 typedef Eigen::Matrix<double,2,3> MiMatrix23d;
+typedef Eigen::Matrix<double,3,2> MiMatrix32d;
+typedef Eigen::Matrix<double,3,4> MiMatrix34d;
 
-int main(int argc, char* argv[]){
+int main(){
 
-    /* ExtraccionData extraer(argv[1], argv[2],argv[3]);*/
-
-    fm M(argv[1]);
-    //M.muestra(argv[1]);
-    std::cout << "holiii"<<std::endl;
-
-
+    fm M("1");
 
     /* Declaracion y asignacion de las matices A Y B por medio de las funciones
      * initMatrixA y initMatrixB
@@ -53,11 +49,31 @@ int main(int argc, char* argv[]){
     */
     Eigen::Matrix3d MAI = M.initMatrixAI();
 
-    /* Declaracion y asignacion de la matiz AI por medio de la funcion
-     * initMatrixAI
+    /* Declaracion y asignacion de la matiz AE Y BE por medio de las funciones
+     * initMatrixAE y initMatrixBE de tamaño de 2,3
     */
     MiMatrix23d MAE = M.initMatrixAE();
     MiMatrix23d MBE = M.initMatrixBE();
+
+    /* Declaracion y asignacion de la matiz P Y C por medio de las funciones
+     * initMatrixAE y initMatrixBE
+    */
+    MiMatrix23d P = M.initMatrixP();
+    MiMatrix32d C = M.initMatrixC();
+
+    /* Declaracion y asignacion de la matiz f1 por medio de las funciones
+     * initMatrixF1
+    */
+    MiMatrix34d F1 = M.initMatrixF1();
+
+    /* Declaracion y asignacion de las matrices MAEI, MBEI, MCEI y MIEI
+    */
+    Eigen::Matrix2d MAEI = M.initMatrixAEI();
+    Eigen::Matrix2d MBEI = M.initMatrixBEI();
+    Eigen::Matrix2d MCEI = M.initMatrixCEI();
+    Eigen::Matrix2d MIEI = M.initMatrixIEI();
+
+
 
 
     int whielGeneral = 0;
@@ -75,15 +91,14 @@ int main(int argc, char* argv[]){
         std::cout << "4) Matriz inversa"<<std::endl;
         std::cout << "5) Sistema de ecuaciones con matrices"<<std::endl;
         std::cout << "6) Análisis de problemas usando matrices"<<std::endl;
-        std::cout << "7) Rango de una matriz"<<std::endl;
-        std::cout << "8) Ecuaciones de una incógnita en matrices "<<std::endl;
-        std::cout << "9) De un sistema de ecuaciones a una matriz"<<std::endl;
-        std::cout << "10) Salir"<<std::endl;
+        std::cout << "7) Ecuaciones de una incógnita en matrices "<<std::endl;
+        std::cout << "8) Salir"<<std::endl;
         std::cout << "Ingrese la Opción a ejecutar: ";
 
         int opcion = 0;
         std::cin >> opcion;
         int whileOperacionesBasicas = 0;
+        int whileEcuaciones = 0;
         int opcionOperacionesBasicas = 0;
         switch(opcion)
         {
@@ -185,30 +200,67 @@ int main(int argc, char* argv[]){
             case 6:
                 std::system("clear");
                 std::cout << "********************************"<<std::endl;
-
-                std::cout << "Matriz de producción: \n Filas: Modelos A, B;   Columnas:  Terminaciones N, L, S\n"<<std::endl;
-                std::cout<<"\n"<<MAI.inverse()<<std::endl<<std::endl;
+                std::cout << "Análisis de problemas usando matrices"<<std::endl;
+                std::cout << "Matriz de producción: \nFilas: Modelos A, B;   Columnas:  Terminaciones N, L, S"<<std::endl;
+                std::cout<<"\n"<<P<<std::endl<<std::endl;
+                std::cout << "Matriz de coste en horas: \nFilas:  Terminaciones N, L, S;    Columnas:  Coste en horas: T, A"<<std::endl;
+                std::cout<<"\n"<<C<<std::endl<<std::endl;
+                std::cout << "Matriz que expresa las horas de taller y de administración para cada uno de los modelos:"<<std::endl;
+                std::cout << "P*C ="<<std::endl;
+                std::cout<<"\n"<<P*C<<std::endl<<std::endl;
                 break;
             case 7:
                 std::system("clear");
-                std::cout << "********************************"<<std::endl;
-                std::cout << "Rango de una matriz\n"<<std::endl;
-                std::cout<<"\n"<<MAI.inverse()<<std::endl<<std::endl;
+                do{
+                    std::cout << "***************************************"<<std::endl;
+                    std::cout << "Ecuaciones de una incógnita en matrices \n"<<std::endl;
+                    std::cout << "1) XA = B + I "<<std::endl;
+                    std::cout << "2) C  = B + AX"<<std::endl;
+                    std::cout << "3) 2C = B + XA"<<std::endl;
+                    std::cout << "4) C = BX + AX"<<std::endl;
+                    std::cout << "5) 2C = XC + XAB"<<std::endl;
+                    std::cout << "6) Salir"<<std::endl;
+                    std::cout << "Ingrese la Opción a ejecutar: ";
+                    std::cin >> opcionOperacionesBasicas;
+                    switch(opcionOperacionesBasicas)
+                    {
+                        case 1:
+                            std::system("clear");
+                            std::cout << "1) XA = B + I"<<std::endl;
+                            std::cout<<"\n"<<(MBEI+MIEI)*(MAEI.inverse())<<std::endl<<std::endl;
+                            break;
+                        case 2:
+                            std::system("clear");
+                            std::cout << "2) C  = B + AX"<<std::endl;
+                            std::cout<<"\n"<<(MAEI.inverse())*(MCEI-MBEI)<<std::endl<<std::endl;
+                            break;
+                        case 3:
+                            std::system("clear");
+                            std::cout << "3) 2C = B + XA"<<std::endl;
+                            std::cout<<"\n"<<((2*MCEI)-MBEI)*(MAEI.inverse())<<std::endl<<std::endl;
+                            break;
+                        case 4:
+                            std::system("clear");
+                            std::cout << "4) C = BX + AX"<<std::endl;
+                            std::cout<<"\n"<<((MAEI+MBEI).inverse())*MCEI<<std::endl<<std::endl;
+                            break;
+                        case 5:
+                            std::system("clear");
+                            std::cout << "5) 2C = XC + XAB"<<std::endl;
+                            std::cout<<"\n"<<((2*MCEI)*((MAEI*MBEI)-MCEI).inverse())<<std::endl<<std::endl;
+                            break;
+                        case 6:
+                            std::system("clear");
+                            std::cout << "6) Salir"<<std::endl;
+                            whileEcuaciones = 1;
+                            break;
+                        default: std::cout << "Usted ha ingresado una opción incorrecta"<<std::endl;
+                    }
+                }
+                while(whileEcuaciones == 0);
                 break;
             case 8:
-                std::system("clear");
-                std::cout << "********************************"<<std::endl;
-                std::cout << "Ecuaciones de una incógnita en matrices\n"<<std::endl;
-                std::cout<<"\n"<<MAI.inverse()<<std::endl<<std::endl;
-                break;
-            case 9:
-                std::system("clear");
-                std::cout << "********************************"<<std::endl;
-                std::cout << "De un sistema de ecuaciones a una matriz\n"<<std::endl;
-                std::cout<<"\n"<<MAI.inverse()<<std::endl<<std::endl;
-                break;
-            case 10:
-                std::cout << "Usted ha seleccionado la opción 3";
+                std::cout << "GRACIAS \n";
                 whielGeneral = 1;
                 break;
             default:
