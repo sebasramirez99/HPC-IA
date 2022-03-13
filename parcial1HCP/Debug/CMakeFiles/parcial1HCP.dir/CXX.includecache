@@ -6,19 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/FUNCIONES/fm.cpp
-fm.h
 /home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/FUNCIONES/fm.h
 iostream
 -
-
-/home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/FUNCIONES/fm.h
-iostream
+eigen3/Eigen/Dense
 -
 
 /home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/main.cpp
 FUNCIONES/fm.h
 /home/sebas/Escritorio/Universidad/Parcial/parcial1HCP/FUNCIONES/fm.h
 iostream
+-
+eigen3/Eigen/Dense
 -
 
